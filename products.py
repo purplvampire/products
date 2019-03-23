@@ -21,3 +21,10 @@ print(products)
 
 # 印出大清單 index=0 中的小清單 index=0 的字串
 print(products[0][0])
+
+# 條列式印出小清單
+for product in products:
+    print(product)
+# 改成名稱對應價格
+    print('商品', product[0], '的價格是', product[1], '元')
+
