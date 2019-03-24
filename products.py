@@ -1,18 +1,22 @@
-# 讀取檔案
+import os
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:      # 取出每行字串
-        if '商品,價格' in line:
-            continue    # 略過迴圈中的其他指令,跳到下一個迴圈
-        s = line.strip().split(',') # 先將每行字串清除換行符號,再以逗點切割成清單,存成s變數
-        name = s[0]
-        price = s[1]
-        products.append(s)  # 將每行小清單存成一個大清單
-        
-        # 進階寫法
-        # name, price = line.strip().split(',')   # 將split切割的清單依序套用到變數name跟price中
-        # products.append([name, price])          # 建立[name, price]清單並加到products大清單中  
-print(products)
+# 讀取檔案
+if os.path.isfile('products.csv'):  # 檢查檔案在不在
+    print('Yeah!找到檔案了!')
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:      # 取出每行字串
+            if '商品,價格' in line:
+                continue    # 略過迴圈中的其他指令,跳到下一個迴圈
+            s = line.strip().split(',') # 先將每行字串清除換行符號,再以逗點切割成清單,存成s變數
+            name = s[0]
+            price = s[1]
+            products.append(s)  # 將每行小清單存成一個大清單
+            # 進階寫法
+            # name, price = line.strip().split(',')   # 將split切割的清單依序套用到變數name跟price中
+            # products.append([name, price])          # 建立[name, price]清單並加到products大清單中 
+    print(products) 
+else:
+    print('找不到檔案....')
 
 # 讓使用者新增商品
 while True:
@@ -44,7 +48,7 @@ for product in products:
 # 改成名稱對應價格
     print('商品', product[0], '的價格是', product[1], '元')
 
-# 儲存檔案
+# 寫入檔案
 with open('products.csv', 'w', encoding='utf-8') as f:    # 建立檔案並給予寫入(w)權限,設定編碼為通用模式(utf-8)
     f.write('商品,價格\n')      # 先加入欄位名稱
     for product in products:   # 取出清單中每筆資料
