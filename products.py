@@ -1,4 +1,17 @@
 products = []
+with open('products.csv', 'r', encoding='utf-8') as f:
+    for line in f:      # 取出每行字串
+        s = line.strip().split(',') # 先將每行字串清除換行符號,再以逗點切割成清單,存成s變數
+        name = s[0]
+        price = s[1]
+        products.append(s)  # 將每行小清單存成一個大清單
+        
+        # 進階寫法
+        # name, price = line.strip().split(',')   # 將split切割的清單依序套用到變數name跟price中
+        # products.append([name, price])          # 建立[name, price]清單並加到products大清單中
+print(products)
+
+
 while True:
     name = input('請輸入商品名稱: ')
     if name == 'q':
