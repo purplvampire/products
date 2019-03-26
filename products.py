@@ -55,12 +55,13 @@ def write_file(filename, products):
 
 def main():
     filename = 'products.csv'
-    if os.path.isfile(filename):  
+    products = []
+    if os.path.isfile(filename): 
         print('Yeah!找到檔案了!')
         products = read_file(filename) # 將回傳的products存到變數products
     else:
         print('找不到檔案....')
-    products = user_input(products)      # 將輸入的值套用到products
+    products = user_input(products)    # 將輸入的值套用到products
     print_products(products)
     write_file(filename, products)
 
